@@ -31,12 +31,13 @@ function calculate(form) {
 
 
 
-function evaluate(equation, result = NaN) {
-    if (count(equation,'(') === 0) {
-        return result;
+function evaluate(equation) {
+    if (count(equation,'(') !== 0) {
+        equation = evaluate(equation.substring(first(equation, '(') + 1,last(equation,')')));
+
     }
-    let current = count(equation, '(')
     let eval = equation.substring(last(equation, '(') + 1,first(equation,')'));
+
 
     /*
     Do operations here in order of BEDMAS
@@ -44,9 +45,14 @@ function evaluate(equation, result = NaN) {
     level 1 = addition + subtraction
      */
 
-    let next = next(eval, 0);
+    let nextOperation = next(eval, 0);
+    first(eval,nextOperation)
 
 
+    nextOperation = next(eval, 1)
+
+
+    return eval;
 }
 
 
