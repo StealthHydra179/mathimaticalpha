@@ -46,11 +46,21 @@ function evaluate(equation) {
      */
 
     let nextOperation = next(eval, 0);
-    first(eval,nextOperation)
+    while(first(eval,nextOperation) !== -1) {
+        first(eval,nextOperation)
+
+
+        nextOperation = next(eval, 0)
+    }
 
 
     nextOperation = next(eval, 1)
+    while(first(eval,nextOperation) !== -1) {
+        first(eval,nextOperation)
 
+
+        nextOperation = next(eval, 1)
+    }
 
     return eval;
 }
